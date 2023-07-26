@@ -3,6 +3,7 @@ Feature: login functionality
   @sprint1
   Scenario: Valid admin login
     #Given user is navigated to HRMS application
-    When user enters valid username and valid password
+    When user click on creat new account button
+    And user enters credentials to register
     And user clicks on login button
     Then user is successfully logged in
