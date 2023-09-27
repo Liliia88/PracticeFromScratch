@@ -1,9 +1,10 @@
-Feature: login functionality
+Feature: checking login functionality
 
   @sprint1
-  Scenario: Valid admin login
-    #Given user is navigated to HRMS application
-    When user click on creat new account button
-    And user enters credentials to register
-    And user clicks on login button
-    Then user is successfully logged in
+    Scenario:valid login functionality
+  Given user navigate and enter login data
+  And user navigate and enter password data
+  And user clicks on button submit
+  Then user is successfully logined
+
+

@@ -15,6 +15,7 @@ import steps.PageInitializer;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.time.Duration;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -28,11 +29,9 @@ public class CommonMethods extends PageInitializer {
         ConfigReader.readProperties(Constants.CONFIGURATION_FILEPATH);
         switch (ConfigReader.getPropertyValue("browser")) {
             case "chrome":
-                WebDriverManager.chromedriver().setup();
                 driver = new ChromeDriver();
                 break;
             case "firefox":
-                WebDriverManager.firefoxdriver().setup();
                 driver = new FirefoxDriver();
                 break;
             default:
@@ -40,7 +39,7 @@ public class CommonMethods extends PageInitializer {
         }
         driver.manage().window().maximize();
         driver.get(ConfigReader.getPropertyValue("url"));
-        driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT, TimeUnit.SECONDS);
+        driver.manage ().timeouts().implicitlyWait(Duration.ofSeconds(Constants.IMPLICIT_WAIT));
         initializePageObjects();
 
         //to configure the file and pattern of it, we need to call the file
@@ -59,7 +58,7 @@ public class CommonMethods extends PageInitializer {
 
     //to get webdriver wait
     public static WebDriverWait getWait() {
-        WebDriverWait wait = new WebDriverWait(driver, Constants.EXPLICIT_WAIT);
+        WebDriverWait wait = new WebDriverWait ( driver, Duration.ofSeconds(Constants.EXPLICIT_WAIT) );
         return wait;
     }
 
